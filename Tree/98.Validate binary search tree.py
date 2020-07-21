@@ -20,3 +20,21 @@ class Solution:
                 return False
             return True
         return helper(root)
+
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        stack, inorder = [], float('-inf')        
+        while stack or root:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            if root.val <= inorder:
+                return False
+            inorder = root.val
+            root = root.right
+        return True
